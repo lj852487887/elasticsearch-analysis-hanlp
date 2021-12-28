@@ -1,6 +1,6 @@
 # intellij files
 .idea/
-gradle/caches/
+gradle/
 *.iml
 *.ipr
 *.iws
