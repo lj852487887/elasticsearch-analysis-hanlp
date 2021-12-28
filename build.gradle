@@ -1,12 +1,35 @@
 buildscript {
     repositories {
-        mavenCentral()
-        jcenter()
+        mavenLocal()
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
     }
     dependencies {
         classpath "org.elasticsearch.gradle:build-tools:${elasticsearchVersion}"
+        classpath "org.elasticsearch:elasticsearch:7.16.2"
+        classpath "org.elasticsearch:elasticsearch-core:7.16.2"
+        classpath "org.apache.logging.log4j:log4j-core:2.17.0"
+        classpath "org.elasticsearch.test:framework:7.16.2"
+        classpath "org.locationtech.spatial4j:spatial4j:0.7"
+        classpath "org.locationtech.jts:jts-core:1.15.0"
+        classpath 'com.hankcs:hanlp:portable-1.7.8'
+        classpath 'commons-codec:commons-codec:1.15'
+        classpath 'commons-logging:commons-logging:1.2'
+        classpath 'org.apache.httpcomponents:httpclient:4.5.13'
+        classpath 'org.apache.httpcomponents:httpcore:4.4.14'
     }
 }
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+    }
+}
+
 
 group = 'org.elasticsearch'
 version = "$elasticsearchVersion"
@@ -28,13 +51,13 @@ jar {
     archiveBaseName.set(rootProject.name)
 }
 
-javadocJar {
-    archiveBaseName.set(rootProject.name)
-}
+//javadocJar {
+//    archiveBaseName.set(rootProject.name)
+//}
 
-sourcesJar {
-    archiveBaseName.set(rootProject.name)
-}
+//sourcesJar {
+//    archiveBaseName.set(rootProject.name)
+//}
 
 assemble {
     doLast {
@@ -60,57 +83,57 @@ dependencies {
     compile 'org.apache.httpcomponents:httpcore:4.4.14'
 }
 
-checkstyle {
-    sourceSets = [project.sourceSets.main]
-}
+//checkstyle {
+//    sourceSets = [project.sourceSets.main]
+//}
 
-checkstyleMain {
-    excludes = ['**/PorterStemmer.java']
-}
+//checkstyleMain {
+//    excludes = ['**/PorterStemmer.java']
+//}
 
-forbiddenApisMain {
-    excludes = [
-            '**/AnalysisHanLPPlugin.class',
-            '**/PorterStemmer.class',
-            '**/RemoteDictConfig.class',
-            '**/DictionaryFileCache.class',
-            '**/ExtMonitor.class',
-            '**/model/*.class',
-            '**/CoreStopWordDictionary.class'
-    ]
-}
+//forbiddenApisMain {
+//    excludes = [
+//            '**/AnalysisHanLPPlugin.class',
+//            '**/PorterStemmer.class',
+//            '**/RemoteDictConfig.class',
+//            '**/DictionaryFileCache.class',
+//            '**/ExtMonitor.class',
+//            '**/model/*.class',
+//            '**/CoreStopWordDictionary.class'
+//    ]
+//}
 
-forbiddenPatterns {
-    forbiddenPatterns.enabled = false;
-}
+//forbiddenPatterns {
+//    forbiddenPatterns.enabled = false;
+//}
 
-licenseHeaders {
-    licenseHeaders.enabled = false
-}
+//licenseHeaders {
+//    licenseHeaders.enabled = false
+//}
 
-dependencyLicenses {
-    dependencyLicenses.enabled = false
-}
+//dependencyLicenses {
+//    dependencyLicenses.enabled = false
+//}
 
-thirdPartyAudit {
-    thirdPartyAudit.enabled = false
-}
+//thirdPartyAudit {
+//    thirdPartyAudit.enabled = false
+//}
 
-validateNebulaPom {
-    validateNebulaPom.enabled = false
-}
+//validateNebulaPom {
+//    validateNebulaPom.enabled = false
+//}
 
-loggerUsageCheck {
-    loggerUsageCheck.enabled = false
-}
+//loggerUsageCheck {
+//    loggerUsageCheck.enabled = false
+//}
 
 test {
     systemProperty 'tests.security.manager', 'false'
 }
 
-testingConventions {
-    testingConventions.enabled = false
-}
+//testingConventions {
+//    testingConventions.enabled = false
+//}
 
 javadoc {
     enabled = false
